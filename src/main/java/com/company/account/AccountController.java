@@ -38,4 +38,12 @@ public class AccountController {
             return accountRepository.save(account);
         }).orElseThrow(() -> new RuntimeException("Failed to update account")));
     }
+
+    @PatchMapping("/deposit/{id}")
+    ResponseEntity<Account> depositMoney(@PathVariable Integer id, @RequestBody double amount) {
+        return ResponseEntity.ok((accountRepository.findById(id).map(account -> {
+            account.setBalance(account.getBalance() + amount);
+            return accountRepository.save(account);
+        }).orElseThrow(() -> new RuntimeException("Failed to deposit money to account"))));
+    }
 }
