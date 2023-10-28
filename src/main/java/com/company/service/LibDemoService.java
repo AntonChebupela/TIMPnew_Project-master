@@ -2,11 +2,8 @@ package com.company.service;
 
 
 import com.company.domain.*;
-import com.company.repository.*;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -41,7 +38,7 @@ public class LibDemoService implements LibDemo{
         List<Deposit> depositList = depositService.getAll();
 
         System.out.println("-------------");
-        depositList.stream().forEach(System.out::println);
+        depositList.forEach(System.out::println);
         System.out.println("-------------");
 
         Deposit dep = Deposit.builder()
@@ -55,7 +52,7 @@ public class LibDemoService implements LibDemo{
         depositService.insert(dep);
 
         depositList = depositService.getAll();
-        depositList.stream().forEach(System.out::println);
+        depositList.forEach(System.out::println);
         System.out.println("-------------");
     }
 
@@ -63,7 +60,7 @@ public class LibDemoService implements LibDemo{
         List<Credit> creditList = creditService.getAll();
 
         System.out.println("-------------");
-        creditList.stream().forEach(System.out::println);
+        creditList.forEach(System.out::println);
         System.out.println("-------------");
 
         Credit cr = Credit.builder()
@@ -78,7 +75,7 @@ public class LibDemoService implements LibDemo{
 
         creditList = creditService.getAll();
         System.out.println("-------------");
-        creditList.stream().forEach(System.out::println);
+        creditList.forEach(System.out::println);
         System.out.println("-------------");
     }
 
@@ -86,7 +83,7 @@ public class LibDemoService implements LibDemo{
         List<CardAccount> cardAccountList = cardAccountService.getAll();
 
         System.out.println("-------------");
-        cardAccountList.stream().forEach(System.out::println);
+        cardAccountList.forEach(System.out::println);
         System.out.println("-------------");
 
         CardAccount ca = CardAccount.builder()
@@ -100,7 +97,7 @@ public class LibDemoService implements LibDemo{
         cardAccountList = cardAccountService.getAll();
 
         System.out.println("-------------");
-        cardAccountList.stream().forEach(System.out::println);
+        cardAccountList.forEach(System.out::println);
         System.out.println("-------------");
     }
 
@@ -108,7 +105,7 @@ public class LibDemoService implements LibDemo{
         List<Card> cardList = cardService.getAll();
 
         System.out.println("-------------");
-        cardList.stream().forEach(System.out::println);
+        cardList.forEach(System.out::println);
         System.out.println("-------------");
 
         Card newCard = Card.builder()
@@ -125,7 +122,7 @@ public class LibDemoService implements LibDemo{
         cardList = cardService.getAll();
 
         System.out.println("-------------");
-        cardList.stream().forEach(System.out::println);
+        cardList.forEach(System.out::println);
         System.out.println("-------------");
     }
 
@@ -151,7 +148,7 @@ public class LibDemoService implements LibDemo{
         clientService.insert(client);
         clientList = clientService.getAll();
 
-        clientList.stream().forEach(System.out::println);
+        clientList.forEach(System.out::println);
     }
 
 }
