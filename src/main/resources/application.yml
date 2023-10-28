@@ -7,14 +7,14 @@ spring:
     hibernate.ddl-auto: update
     properties:
       hibernate:
-        "globally_quoted_identifiers": "true"
+        "globally_quoted_identifiers": true
   datasource:
     platform: postgres
     url: "jdbc:postgresql://db.gypwsxyxohbvzrhbtomu.supabase.co:5432/postgres?user=postgres&password=wooDe.73bank_db"
-    username: "postgres"
-    password: "wooDe.73bank_db"
+    username: postgres
+    password: wooDe.73bank_db
   database:
     driverClassName: org.Postgresql.Driver
 logging:
   level:
-    web: "DEBUG"
+    web: DEBUG

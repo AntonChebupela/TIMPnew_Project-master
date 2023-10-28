@@ -1,5 +1,8 @@
 package com.company.account;
 
+import com.company.user.Role;
+import com.company.user.User;
+import com.company.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,8 @@ import java.util.List;
 public class AccountController {
 
     private final AccountRepository accountRepository;
+    private final UserRepository userRepository;
+    private final AccountService accountService;
 
     @GetMapping
     ResponseEntity<List<Account>> getAll() {
@@ -25,8 +30,15 @@ public class AccountController {
     }
 
     @PostMapping
-    ResponseEntity<Account> create(@RequestBody Account account) {
-        return ResponseEntity.ok(accountRepository.save(account));
+    ResponseEntity<Account> create(@RequestBody AccountDto dto) {
+        String type = dto.getType();
+        Integer userId = dto.getUserId();
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("Cannot find user with id " + userId));
+        if (accountService.isTypeValid(type) && user.getRole() == Role.CLIENT) {
+            Account newAccount = accountRepository.save(new Account(dto, user));
+            return ResponseEntity.ok(newAccount);
+        }
+        return ResponseEntity.badRequest().build();
     }
 
     @PatchMapping("/{id}")
