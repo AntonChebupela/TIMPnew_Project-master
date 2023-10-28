@@ -3,6 +3,7 @@ package com.company.service;
 
 import com.company.domain.*;
 import com.company.repository.*;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class LibDemoService implements LibDemo{
 
     private final AccountService accountService;
@@ -24,7 +25,7 @@ public class LibDemoService implements LibDemo{
         List<Account> accountList = accountService.getAll();
 
         System.out.println("-------------");
-        accountList.stream().forEach(System.out::println);
+        accountList.forEach(System.out::println);
         System.out.println("-------------");
 
         Account account = Account.builder().account("123").balance(111.11).build();
@@ -32,7 +33,7 @@ public class LibDemoService implements LibDemo{
         accountList = accountService.getAll();
 
         System.out.println("-------------");
-        accountList.stream().forEach(System.out::println);
+        accountList.forEach(System.out::println);
         System.out.println("-------------");
     }
 

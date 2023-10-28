@@ -25,10 +25,7 @@ public class ClientDto {
 
     private int cardAccount;
 
-    public static Client toDomainObject(ClientDto clientDto) {
-        return new Client(clientDto.getId(), clientDto.getName(), clientDto.getBirthday(), clientDto.getCredits(),
-                clientDto.getDeposits(), clientDto.getCardAccount());
-    }
+
 
     public static ClientDto toDto(Client client) {
         return new ClientDto(client.getId(), client.getName(), client.getBirthday(), client.getCredits(),

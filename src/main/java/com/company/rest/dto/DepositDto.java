@@ -28,10 +28,6 @@ public class DepositDto {
 
     private String abilityWithdraw; //возможность снять средства
 
-    public static Deposit toDomainObject(DepositDto depositDto) {
-        return new Deposit(depositDto.getId(), depositDto.getName(), depositDto.getSum(), depositDto.getPercent(),
-                depositDto.getPeriod(), depositDto.getRequisites(), depositDto.getAbilityTopUp(), depositDto.getAbilityWithdraw());
-    }
 
     public static DepositDto toDto(Deposit deposit) {
         return new DepositDto(deposit.getId(), deposit.getName(), deposit.getSum(), deposit.getPercent(),

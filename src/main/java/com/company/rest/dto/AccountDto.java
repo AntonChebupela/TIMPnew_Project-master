@@ -19,9 +19,7 @@ public class AccountDto {
 
     private double balance;
 
-    public static Account toDomainObject(AccountDto accountDto) {
-        return new Account(accountDto.getId(), accountDto.getAccount(), accountDto.getBalance());
-    }
+
 
     public static AccountDto toDto(Account account) {
         return new AccountDto(account.getId(), account.getAccount(), account.getBalance());

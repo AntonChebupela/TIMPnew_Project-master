@@ -26,10 +26,6 @@ public class CardAccountDto {
 
     private String cardNumber;
 
-    public static CardAccount toDomainObject(CardAccountDto cardAccountDto) {
-        return new CardAccount(cardAccountDto.getId(), cardAccountDto.getClientName(), cardAccountDto.getBirthday(),
-                cardAccountDto.getAccountCodeWord(), cardAccountDto.getAccountNumber(), cardAccountDto.getCardNumber());
-    }
 
     public static CardAccountDto toDto(CardAccount cardAccount) {
         return new CardAccountDto(cardAccount.getId(), cardAccount.getClientName(), cardAccount.getBirthday(),

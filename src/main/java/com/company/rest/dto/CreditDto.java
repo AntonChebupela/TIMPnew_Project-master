@@ -27,10 +27,6 @@ public class CreditDto {
 
     private String requisites;
 
-    public static Credit toDomainObject(CreditDto creditDto) {
-        return new Credit(creditDto.getId(), creditDto.getClientName(), creditDto.getPercent(), creditDto.getPeriod(),
-                creditDto.getMonthlyPayment(), creditDto.getSum(), creditDto.getRequisites());
-    }
 
     public static CreditDto toDto(Credit credit) {
         return new CreditDto(credit.getId(), credit.getClientName(), credit.getPercent(), credit.getPeriod(),

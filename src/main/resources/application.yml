@@ -1,28 +1,20 @@
-server:
-  port: 8080
-
-# Конфигурационный файл
 spring:
-
-  # Подключение к H2 бд через jdbc
-  datasource:
-    url: jdbc:h2:mem:testdb
-
-  # Включение консоли
-  h2:
-    console:
-      #enabled: false
-      enabled: true
-
-  # Включение liquibase и установка основного файла
-  liquibase:
-    enabled: true
-    change-log: classpath:db.changelog/db.changelog-master.xml
-
+  mvc:
+    log-request-details: true
   jpa:
-    generate-ddl: false
-
-    hibernate:
-      ddl-auto: none
-
+    database: POSTGRESQL
     show-sql: true
+    hibernate.ddl-auto: update
+    properties:
+      hibernate:
+        "globally_quoted_identifiers": "true"
+  datasource:
+    platform: postgres
+    url: "jdbc:postgresql://db.gypwsxyxohbvzrhbtomu.supabase.co:5432/postgres?user=postgres&password=wooDe.73bank_db"
+    username: "postgres"
+    password: "wooDe.73bank_db"
+  database:
+    driverClassName: org.Postgresql.Driver
+logging:
+  level:
+    web: "DEBUG"
