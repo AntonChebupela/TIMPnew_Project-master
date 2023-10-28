@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // url базы: jdbc:h2:mem:testdb
 
 @SpringBootApplication
-public class LibrarySpring {
+public class BankApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(LibrarySpring.class, args);
+        SpringApplication.run(BankApp.class, args);
     }
 }
 
