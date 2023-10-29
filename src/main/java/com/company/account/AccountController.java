@@ -61,10 +61,21 @@ public class AccountController {
     }
 
     @PatchMapping("/deposit/{id}")
-    ResponseEntity<Account> depositMoney(@PathVariable Integer id, @RequestBody double amount) {
+    ResponseEntity<Account> depositMoney(@PathVariable Integer id, @RequestBody AmountDto dto) {
         return ResponseEntity.ok((accountRepository.findById(id).map(account -> {
-            account.setBalance(account.getBalance() + amount);
+            account.setBalance(account.getBalance() + dto.getAmount());
             return accountRepository.save(account);
         }).orElseThrow(() -> new RuntimeException("Failed to deposit money to account"))));
+    }
+    @PatchMapping("/withdraw/{id}")
+    ResponseEntity<Account> withdrawMoney(@PathVariable Integer id, @RequestBody AmountDto dto) {
+        return ResponseEntity.ok((accountRepository.findById(id).map(account -> {
+            if (account.getBalance() > dto.getAmount() || account.isOverdraftAllowed()) {
+                account.setBalance(account.getBalance() - dto.getAmount());
+                return accountRepository.save(account);
+            }else {
+                throw new RuntimeException("You cannot withdraw this amount of money");
+            }
+        }).orElseThrow(() -> new RuntimeException("Failed to withdraw money to account"))));
     }
 }
