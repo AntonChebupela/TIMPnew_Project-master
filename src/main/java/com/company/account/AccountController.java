@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -19,14 +20,22 @@ public class AccountController {
     private final UserRepository userRepository;
     private final AccountService accountService;
 
-    @GetMapping
-    ResponseEntity<List<Account>> getAll() {
-        return ResponseEntity.ok(accountRepository.findAll());
+    @GetMapping("/user/{userId}")
+    ResponseEntity<List<Account>> getByUser(@PathVariable Integer userId) {
+        Optional<User> optUser = userRepository.findById(userId);
+        return optUser.map(user -> ResponseEntity.ok(accountRepository.findAllByUser(user)))
+                .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Account> getById(@PathVariable Integer id) {
-        return ResponseEntity.ok(accountRepository.getReferenceById(id));
+    ResponseEntity<AccountDto> getById(@PathVariable Integer id) {
+        Account account = accountRepository.getReferenceById(id);
+        return ResponseEntity.ok(new AccountDto(
+                account.getBalance(),
+                account.isOverdraftAllowed(),
+                account.getType().toString(),
+                account.getUser().getId()
+        ));
     }
 
     @PostMapping
