@@ -5,13 +5,12 @@ import com.company.user.User;
 import com.company.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/account")
 public class AccountController {
@@ -77,5 +76,10 @@ public class AccountController {
                 throw new RuntimeException("You cannot withdraw this amount of money");
             }
         }).orElseThrow(() -> new RuntimeException("Failed to withdraw money to account"))));
+    }
+
+    @DeleteMapping("/{id}")
+    void deleteAccount(@PathVariable Integer id) {
+        accountRepository.deleteById(id);
     }
 }
